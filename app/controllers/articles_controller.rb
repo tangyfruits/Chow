@@ -1,6 +1,10 @@
 class ArticlesController < ApplicationController
-  before_filter :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:myrecipes, :new, :create, :edit, :update, :destroy]
   before_filter :check_user, only: [:edit, :update, :destroy]
+def myrecipes
+  @articles = Article.where(user: current_user)
+end
+
   def index
       if params[:search]
         @articles = Article.search(params[:search]).order("created_at DESC")
@@ -9,7 +13,7 @@ class ArticlesController < ApplicationController
       end
   end
   def new_arrivals
-    @article = article.all.order('created_at DESC')
+    @articles = Article.all.order('created_at DESC')
   end
   def show
     @article = Article.find(params[:id])

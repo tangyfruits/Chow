@@ -6,7 +6,11 @@
           <%= link_to image_tag(article.image.url), article %>
           <div class="caption">
             <h3><%= article.title %></h3>
+                        <p><%= "Submitted by #{article.user.email}" %></p>
           </div>
+          <%if (user_signed_in?) && (current_user == article.user)%>
+
+        <% end %>
         </div>
       </div>
     <% end %>
