@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_filter :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy]
+  before_filter :check_user, only: [:edit, :update, :destroy]
   def index
     @articles = Article.all
   end
@@ -44,7 +46,12 @@ class ArticlesController < ApplicationController
   end
 
   private
-    def article_params
-      params.require(:article).permit(:title, :text, :image)
+  def article_params
+    params.require(:article).permit(:title, :text, :image)
+  end
+  def check_user
+    if current_user.id != @listing.user_id
+      redirect_to root_url, alert: "Sorry this isn't your listing"
     end
+  end
 end
