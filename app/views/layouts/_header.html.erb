@@ -1,0 +1,50 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+       <a class="navbar-brand" href="/">CHOW</a>
+       <li class="navbarfont"><%= link_to "Browse", articles_path %></li>
+       <li class="navbarfont"><%= link_to "New Recipes", new_arrivals_articles_path %></li>
+     </ul>
+
+     <form class="navbar-form navbar-left" role="search">
+       <div class="input-group">
+           <%= form_tag(:method => "get", id: "search-form") do %>
+           <%= text_field_tag :search, params[:search], placeholder: "Search Listings", class: 'form-control' %>
+           <span class="input-group-btn">
+             <%= submit_tag "Search", class: 'btn btn-default' %>
+           </span>
+           <% end %>
+          </div>
+    </form>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% if !user_signed_in? %>
+      <li><%= link_to "Signup", new_user_registration_path%></li>
+      <li><%= link_to "Login", new_user_session_path%></li>
+      <%else%>
+
+      <li class="dropdown navbarfont custom-button">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email %>  <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li class="divider"></li>
+          <li><%= link_to 'New Recipe', new_article_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to 'My Recipes'  %></li>
+          <li><%= link_to 'Saved Recipes' %></li>
+          <li class="divider"></li>
+          <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+          <li><%= link_to "Signout", destroy_user_session_path, method: :delete %></li>
+          <li class="divider"></li>
+
+          <%end%>
+        </ul>
+      </li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
