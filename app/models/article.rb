@@ -5,5 +5,7 @@ class Article < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   validates :title, :text, presence: true,
                     length: { minimum: 1 }
-
+ def self.search(search)
+   where("LOWER(title) LIKE ? OR LOWER(text) LIKE ?", "%#{search.downcase}%", "%#{search.downcase}%")
+ end
 end
