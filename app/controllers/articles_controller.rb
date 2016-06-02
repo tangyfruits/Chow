@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  before_filter :authenticate_user!, only: [:myrecipes, :new, :create, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_filter :check_user, only: [:edit, :update, :destroy]
 def myrecipes
   @articles = Article.where(user: current_user)
@@ -22,12 +23,10 @@ end
   def new
     @article = Article.new
   end
-
-  def edit
-    @article = Article.find(params[:id])
-  end
-
-  def create
+def edit
+  @article = Article.find(params[:id])
+end
+def create
     @article = Article.new(article_params)
     @article.user_id = current_user.id
     if @article.save
@@ -53,12 +52,18 @@ end
   end
 
   private
-  def article_params
-    params.require(:article).permit(:title, :text, :image)
+  def set_article
+      @article = Article.find(params[:id])
   end
+
   def check_user
-    if current_user.id != @listing.user_id
+    if current_user != @article.user
       redirect_to root_url, alert: "Sorry this isn't your listing"
     end
   end
+
+  def article_params
+    params.require(:article).permit(:title, :text, :image)
+  end
+
 end
