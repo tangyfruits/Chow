@@ -4,16 +4,17 @@ This is a website dedicated to cooking featuring mostly recipes written in Ruby 
 
 Currently users are able to create accounts and post their own recipes. Additionally, they may alter or delete their publishings. Users and visitors alike are able to access all recipes posted to the website using either browse, new arrivals or even the search bar which is case insenstive. Currently there are no comments yet and personally I believe nothing is complex enough to justify commenting at this level. Ruby on Rails is quite straight forward and user friendly so I hope my code is readable. This is an extension to http://guides.rubyonrails.org/getting_started.html
 
-Gems used:
-  +Devise
-  +Paperclip
-  +Bootstrap-sass
+Gems used:  
+-Devise  
+-Paperclip  
+-Bootstrap-sass  
 
-To implement:
-  +Saving recipes
-  +Mailer
-  +Nested categories
-  +Recipe text area seperated frm method
-  +Featured recipes
-  +Organized by popularity
-  +Rating system
+To implement:  
+-Saving recipes  
+-Mailer  
+-Nested categories  
+-Recipe text area seperated frm method  
+-Featured recipes  
+-Organized by popularity  
+-Rating system  
+-Image hosting  
