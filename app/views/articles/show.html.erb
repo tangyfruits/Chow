@@ -20,6 +20,6 @@
 <h2>Leave a comment!</h2>
 <%= render 'comments/form' %>
 <%if (user_signed_in?) && (current_user == @article.user)%>
-<%= link_to 'Edit', edit_article_path(article), class:"btn btn-link" %>
-<%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-link" %>
+<%= link_to 'Edit', edit_article_path(@article), class:"btn btn-link" %>
+<%= link_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-link" %>
 <% end %>
