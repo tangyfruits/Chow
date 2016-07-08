@@ -13,8 +13,10 @@ To implement:
 -Saving recipes  
 -Mailer  
 -Nested categories  
--Recipe text area seperated frm method  
+-Recipe text area seperated from method  
 -Featured recipes  
 -Organized by popularity  
 -Rating system  
--Image hosting  
+-Image hosting
+-Multiple images
+-Images within the textbox
